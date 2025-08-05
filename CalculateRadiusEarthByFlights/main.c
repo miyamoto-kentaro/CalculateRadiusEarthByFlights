@@ -6,37 +6,37 @@
 #include "earth_radius_calculator.h"
 
 int main(void) {
-	// ƒŒƒR[ƒhƒŠƒXƒg‚Ì‰Šú‰»
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
     RecordList recodeList;
     RecordList_init(&recodeList);
 
-    if (RecordList_loadFromCSV(&recodeList, "C:\\Users\\‹{–{Œ’‘¾˜Y\\Downloads\\20230727_HD43_HND_CTS.csv") != 0) {
+    if (RecordList_loadFromCSV(&recodeList, "20230727_HD43_HND_CTS.csv") != 0) {
         fprintf(stderr, "Failed to load flight data from CSV.\n");
         RecordList_free(&recodeList);
 		return 1;
 	}
 
-	// ’¼üq˜H‚ğ’T‚·
+	// ç›´ç·šèˆªè·¯ã‚’æ¢ã™
 	size_t segmentCount = 0;
-	// Šp“x‚Ìè‡’l‚ğ10“xAÅ¬ƒŒƒR[ƒh”‚ğ5‚Éİ’è
-	// ’¼ü‹æŠÔ‚ÌƒŠƒXƒg‚ğæ“¾
-	// segments‚Í“®“I‚ÉŠm•Û‚³‚ê‚é‚Ì‚ÅAŒã‚Å‰ğ•ú‚·‚é•K—v‚ª‚ ‚é
+	// è§’åº¦ã®é–¾å€¤ã‚’10åº¦ã€æœ€å°ãƒ¬ã‚³ãƒ¼ãƒ‰æ•°ã‚’5ã«è¨­å®š
+	// ç›´ç·šåŒºé–“ã®ãƒªã‚¹ãƒˆã‚’å–å¾—
+	// segmentsã¯å‹•çš„ã«ç¢ºä¿ã•ã‚Œã‚‹ã®ã§ã€å¾Œã§è§£æ”¾ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 	Segment* segments = findStraightSegments(&recodeList, 10.0, 5, &segmentCount);
 
 	for (size_t i = 0; i < segmentCount; i++) {
 		Segment seg = segments[i];
 		printf("Segment %zu: start=%zu, end=%zu\n", i, seg.start, seg.end);
-		// ’¼ü‹æŠÔ‚ÌƒŒƒR[ƒh‚ğæ“¾
+		// ç›´ç·šåŒºé–“ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 		const Record* startRecord = &recodeList.items[seg.start];
 
 		double calculatedRadius = calculateEarthRadius(
 			&recodeList.items[seg.start],
 			seg.end - seg.start + 1
 		);
-		printf("‚±‚ÌƒZƒOƒƒ“ƒg‚Ì’n‹…”¼Œa %zu: %.2f m\n", i, calculatedRadius);
+		printf("ã“ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®åœ°çƒåŠå¾„ %zu: %.2f m\n", i, calculatedRadius);
 	}
 
-    // ŠJ•ú
+    // é–‹æ”¾
 	RecordList_free(&recodeList);
     return 0;
 }
