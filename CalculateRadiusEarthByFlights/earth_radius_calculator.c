@@ -43,10 +43,10 @@ double calculateEarthRadius(
 	
 	// 球座標の座標
 	// A = (r1, θ1, φ1), B = (r2, θ2, φ2) 
-	double θ1 = Latitude_TO_THETA(firstRecord->latitude);
-	double φ1 = Longitude_TO_PHI(firstRecord->longitude);
-	double θ2 = Latitude_TO_THETA(lastRecord->latitude);
-	double φ2 = Longitude_TO_PHI(lastRecord->longitude);
+	double theta1 = Latitude_TO_THETA(firstRecord->latitude);
+	double phi1 = Longitude_TO_PHI(firstRecord->longitude);
+	double theta2 = Latitude_TO_THETA(lastRecord->latitude);
+	double phi2 = Longitude_TO_PHI(lastRecord->longitude);
 
 	// ここでレコードは高度hを持っていて、緯度と経度を持っている。
 	// r1 = h1 + R, r2 = h2 + R
@@ -58,7 +58,7 @@ double calculateEarthRadius(
 	// d^2 = |A-B|^2
 	// = r1^2 + r2^2 - 2 * r1 * r2 * γ
 	// γ = sin(θ1) * sin(θ2) * cos(φ1 - φ2) + cos(θ1) * cos(θ2)
-	double γ = sin(θ1) * sin(θ2) * cos(φ1 - φ2) + cos(θ1) * cos(θ2);
+	double γ = sin(theta1) * sin(theta2) * cos(phi1 - phi2) + cos(theta1) * cos(theta2);
 
 	// そのため、Rを求めるための方程式は次のようになる。
 	// d^2 = (h1 + R)^2 + (h2 + R)^2 - 2 * (h1 + R) * (h2 + R) * γ
