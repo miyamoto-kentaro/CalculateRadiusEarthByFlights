@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-// 360°ラップアラウンドを考慮した方位差の絶対値を返す
 static double bearing_diff(double a, double b) {
     double d = fabs(a - b);
     return (d > 180.0) ? 360.0 - d : d;
@@ -22,12 +21,11 @@ Segment* findStraightSegments(
     }
 
     size_t cap = 16;
-	// 初期容量を設定
     Segment* segments = malloc(sizeof * segments * cap);
     if (!segments) return NULL;
 
-    long seg_start = -1;  // 符号付きで「開始なし」を -1 で表現
-    size_t seg_len = 1;   // 現在の連続長
+    long seg_start = -1;
+    size_t seg_len = 1;
 
     for (size_t i = 0; i + 1 < n; ++i) {
         double d1 = list->items[i].direction;
@@ -44,7 +42,6 @@ Segment* findStraightSegments(
             }
         }
         else {
-            // 閾値超え → 区間終了チェック
             if (seg_start >= 0 && seg_len >= min_records) {
                 if (*out_count >= cap) {
                     cap *= 2;
@@ -60,7 +57,6 @@ Segment* findStraightSegments(
         }
     }
 
-    // ループ後に未保存の区間が残っていればチェック
     if (seg_start >= 0 && seg_len >= min_records) {
         if (*out_count >= cap) {
             cap += 1;
