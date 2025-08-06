@@ -105,16 +105,20 @@ $\boldsymbol{F}_{1}=(r_1 = h_1 + R, \theta_1, \phi_1)$、$\boldsymbol{F}_{2}=(r_
 
 $$
 
-d^2 = |\boldsymbol{F}_{1}-\boldsymbol{F}_{2}| \\
-= r_1^2 + r_2^2 -2r_1r_2*cos\gamma \\
-cos\gamma = sin(\theta_1)sin(\theta_2)cos(\phi_1-\phi_2) - cos(\theta_1)cos(\theta_2)
+\begin{aligned}
+d^2 &= |\boldsymbol{F}_{1}-\boldsymbol{F}_{2}| \\
+&= r_1^2 + r_2^2 -2r_1r_2*cos\gamma \\
+cos\gamma &= sin(\theta_1)sin(\theta_2)cos(\phi_1-\phi_2) - cos(\theta_1)cos(\theta_2)
+\end{aligned}
 $$
 これを$r_1 = h_1 + R$と$r_1 = h_1 + R$を代入して<br>
 まとめると
 
 $$
-d^2 = (h_1 + R)^2 + (h_2 + R)^2 - 2(h_1 + R)(h_2 + R)cos\gamma\\
-= 2(1-cos\gamma) R^2 + 2(h_1+h_2)(1-cos\gamma)R + (h_1^2+h_2^2-2h_1h_2cos\gamma)
+\begin{aligned}
+d^2 &= (h_1 + R)^2 + (h_2 + R)^2 - 2(h_1 + R)(h_2 + R)cos\gamma\\
+&= 2(1-cos\gamma) R^2 + 2(h_1+h_2)(1-cos\gamma)R + (h_1^2+h_2^2-2h_1h_2cos\gamma)
+\end{aligned}
 $$
 
 この式をRについて解くと簡単な二次方程式の解
